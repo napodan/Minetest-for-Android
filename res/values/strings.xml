@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Minetest for Android</string>
+    <string name="start">Restart</string>
+    <string name="About">About project "Minetest for Android"</string>
+    <string name="unpack">Installing updates&#8230;</string>
+    <string name="hello">Minetest for Android — Open Sourse Project, based on Minetest. </string>
+    <string name="open">Tap to continue</string>
+    <string name="warning">When unpacking, do not wrap application. Otherwise, unpacking may take with errors.</string>
+    <string name="check">Checking the version&#8230;</string>
+    <string name="extract">Extract files&#8230;</string>
+    <string name="stgame">To start the game, click "Start Singleplayer"!</string>
+    <string name="disconnect">No network available! Try again.</string>
+    <string name="download">Downloading Zip File..</string>
+    <string name="site"><i>Open Minetest Wiki</i></string>
+    <string name="dev">Dev by MoNTE48 (MoNTE48@mail.ua), 2014</string>
+    <string name="wiki">http://wiki.minetest.com/wiki/</string>
+    <string name="rmold">Remove old files&#8230;</string>
+    <string name="ver">0.4.10 | build 1.4.3</string>
+    <string name="bad">Your game world is recreated!</string>
+
+</resources>
