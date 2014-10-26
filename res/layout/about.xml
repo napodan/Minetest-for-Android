@@ -3,16 +3,6 @@
     android:layout_height="fill_parent" >
 
     <TextView
-        android:id="@+id/ver"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/aboutt"
-        android:gravity="center"
-        android:text="@string/ver" />
-
-    <TextView
         android:id="@+id/aboutt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +11,17 @@
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:text="@string/app_name"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/ver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/aboutt"
+        android:gravity="center"
+        android:text="@string/ver"
         android:textSize="20dp" />
 
     <Button
@@ -33,7 +34,8 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/button"
         android:onClick="wiki"
-        android:text="@string/site" />
+        android:text="@string/site"
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/RateMeSourse"
@@ -45,7 +47,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/button"
         android:onClick="RateMeSourse"
-        android:text="Rate Me Sourse" />
+        android:text="Rate Me Plugin " />
 
     <TextView
         android:id="@+id/textView1"
@@ -56,7 +58,8 @@
         android:layout_below="@+id/RateMeSourse"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text="URL on build sourse you can found on Google Play!" />
+        android:text="ALL sourse Minetest for Android Project: 
+        http://goo.gl/o99V2a" />
 
     <TextView
         android:id="@+id/dev"
@@ -78,7 +81,7 @@
         android:layout_marginTop="50dp"
         android:gravity="center"
         android:text="Open Sourse!"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/MinetestReadme"

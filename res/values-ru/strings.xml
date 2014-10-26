@@ -5,12 +5,12 @@
     <string name="About">О проекте "Minetest for Android"</string>
     <string name="unpack">Установка обновлений&#8230;</string>
     <string name="hello">Minetest for Android — проект с открытым исходным кодом на основе Minetest.</string>
-    <string name="open">Нажмите для продолжения</string>
-    <string name="warning">Во время распаковки не сворачивайте приложение. Иначе распаковка пройдёт с ошибками.</string>
+    <string name="open"><u>Нажмите для продолжения</u></string>
+    <string name="warning">Во время обновления не закрывайте приложение. Иначе обновление может пройти с ошибкой.</string>
     <string name="check">Проверка обновлений&#8230;</string>
-    <string name="stgame">Для начала игры нажмите "Start Singleplayer"!</string>
+    <string name="stgame">Для начала игры нажмите "New" и создайте мир!</string>
     <string name="disconnect">Отсутствует подключение к Интернету! Повторите попытку.</string>
-    <string name="download">Загрузка необходимых файлн&#8230;</string>
+    <string name="download">Загрузка необходимых файлов&#8230;</string>
     <string name="wiki">http://minetest.ru/wiki/</string>
     <string name="rmold">Удаление устаревших файлов&#8230;</string>
     <string name="bad">Ваш игровой мир будет пересоздан&#8230;</string>

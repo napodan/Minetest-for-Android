@@ -62,14 +62,9 @@ public class About extends Activity {
 		// открываю сайт ч-з Uri
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 
-		
-		
-	
 		intent.setData(Uri
 				.parse((String) getResources().getText(R.string.wiki)));
 		startActivity(intent);
-		
-		
 
 	}
 }

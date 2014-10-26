@@ -2,11 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:keepScreenOn="true"
-    android:paddingBottom="0.0dip"
-    android:paddingLeft="0.0dip"
-    android:paddingRight="0.0dip"
-    android:paddingTop="0.0dip" >
+    android:keepScreenOn="true">
 
     <ImageView
         android:id="@+id/icon"
@@ -22,8 +18,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:alpha="0.9"
-        android:background="#00FF00"
+       android:alpha="0.7"
+        android:background="@drawable/button"
         android:text="@string/start"
         android:textSize="30sp" />
 

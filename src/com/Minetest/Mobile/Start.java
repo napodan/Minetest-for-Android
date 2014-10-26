@@ -43,10 +43,9 @@ public class Start extends Activity {
 	String unzipLocation = Environment.getExternalStorageDirectory()
 			+ "/minetest/";
 	String zipFile = Environment.getExternalStorageDirectory() + "/Files.zip";
-	final String URLZIP = "http://95.215.44.248/cache/mt/1.5.43/Files.zip";
-	private String const_ver = "1.5.43";
-	// тут перечисляешь массив плохих версий
-	private String[] bad_ver = new String[] { "1.4", "1.3", "1.5" };
+	final String URLZIP = "http://95.215.44.248/cache/mt/1.7/Files.zip";
+	private String const_ver = "1.7";
+	private String[] bad_ver = new String[] { "1.4", "1.3", "1.5", "1.5.43" };
 
 	String SDAllPath = "";
 
@@ -77,46 +76,46 @@ public class Start extends Activity {
 		final File version = new File(SDAllPath + "ver.txt");
 		final Button next = (Button) findViewById(R.id.nextbtn);
 		// Starting game
-		Toast.makeText(getBaseContext(), R.string.check, Toast.LENGTH_SHORT)
-				.show();
-		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
-			public void run() {
-				if (find_ver(version) == 0) {
-					next.setVisibility(View.GONE);
-					download();
-				} else if (find_ver(version) == 1) {
-					nnext();
-				} else if (find_ver(version) == -1) {
-					Toast.makeText(Start.this, R.string.bad, Toast.LENGTH_SHORT)
-							.show();
-					deleteFiles("/sdcard/minetest/worlds");
-					Handler handler1 = new Handler();
-					handler1.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							download();
-						}
-					}, 3000);
-				}
+		next.setVisibility(View.GONE);
+		checkD();
+		if (version.exists()) {
+			Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
+				public void run() {
+					if (find_ver(version) == 0) {
+						download();
+					} else if (find_ver(version) == 1) {
+						nnext();
+					} else if (find_ver(version) == -1) {
+						Toast.makeText(Start.this, R.string.bad,
+								Toast.LENGTH_SHORT).show();
+						deleteFiles("/sdcard/minetest/worlds");
+						Handler handler1 = new Handler();
+						handler1.postDelayed(new Runnable() {
+							@Override
+							public void run() {
+								download();
+							}
+						}, 2000);
+					}
 
-			}
-		}, 1000); // * ms
+				}
+			}, 1000); // * ms
+		} else
+			download();
 
 		next.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-
-				Toast.makeText(getBaseContext(), R.string.check,
-						Toast.LENGTH_SHORT).show();
-				Handler handler = new Handler();
-				handler.postDelayed(new Runnable() {
-					public void run() {
-						if (find_ver(version) == 0) {
-							next.setVisibility(View.GONE);
-							download();
-						} else {
-							if (find_ver(version) == 1) {
+				next.setVisibility(View.GONE);
+				checkD();
+				if (version.exists()) {
+					Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+						public void run() {
+							if (find_ver(version) == 0) {
+								download();
+							} else if (find_ver(version) == 1) {
 								nnext();
 							} else if (find_ver(version) == -1) {
 								Toast.makeText(Start.this, R.string.bad,
@@ -128,12 +127,13 @@ public class Start extends Activity {
 									public void run() {
 										download();
 									}
-								}, 3000);
-								nnext();
+								}, 2000);
 							}
+
 						}
-					}
-				}, 1000); // * ms
+					}, 1000); // * ms
+				} else
+					download();
 			}
 		});
 	}
@@ -144,7 +144,11 @@ public class Start extends Activity {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			line = br.readLine();
-		} catch (IOException e) {
+		} catch (Exception e) {
+			Log.e("WTF", e.getMessage());
+		}
+		if (line == null) {
+			line = "-1.0";
 		}
 		if (const_ver.equals(line)) {
 			result = 1;
@@ -164,8 +168,6 @@ public class Start extends Activity {
 	}
 
 	private void nnext() {
-		Toast.makeText(getBaseContext(), R.string.stgame, Toast.LENGTH_LONG)
-				.show();
 		Intent intent = new Intent(this, MtNativeActivity.class);
 		startActivity(intent);
 	}
@@ -181,7 +183,6 @@ public class Start extends Activity {
 			mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			mProgressDialog.setCancelable(false);
 			mProgressDialog.show();
-
 		}
 
 		@Override
@@ -219,7 +220,7 @@ public class Start extends Activity {
 		}
 
 		protected void onProgressUpdate(String... progress) {
-			Log.d("WTF", progress[0]);
+			Log.d("ANDRO_ASYNC", progress[0]);
 			mProgressDialog.setProgress(Integer.parseInt(progress[0]));
 		}
 
@@ -236,6 +237,14 @@ public class Start extends Activity {
 
 			}
 		}
+	}
+
+	public void checkD() {
+		mProgressDialog = new ProgressDialog(Start.this);
+		mProgressDialog.setMessage(getString(R.string.check));
+		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		mProgressDialog.setCancelable(false);
+		mProgressDialog.show();
 	}
 
 	public void unzip() throws IOException {
@@ -326,10 +335,12 @@ public class Start extends Activity {
 			Toast.makeText(Start.this, R.string.rmold, Toast.LENGTH_SHORT)
 					.show();
 			/* DEL older folders */
-			deleteFiles("/sdcard/minetest/cache");
 			deleteFiles("/sdcard/minetest/builtin");
+			deleteFiles("/sdcard/minetest/cache");
 			deleteFiles("/sdcard/minetest/games");
 			deleteFiles("/sdcard/minetest/textures");
+			deleteFiles("/sdcard/minetest/tmp");
+
 			/* END */
 
 			Handler handler = new Handler();
@@ -342,7 +353,7 @@ public class Start extends Activity {
 					DownloadZip mew = new DownloadZip();
 					mew.execute(URLZIP);
 				}
-			}, 2000); // * ms
+			}, 3000); // * ms
 
 		} else
 			Toast.makeText(Start.this, R.string.disconnect, Toast.LENGTH_LONG)
